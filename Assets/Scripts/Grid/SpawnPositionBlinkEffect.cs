@@ -5,19 +5,21 @@ using UnityEngine.UI;
 
 public class SpawnPositionBlinkEffect : MonoBehaviour
 {
-    [SerializeField] private Image _targetImage;
+    //[SerializeField] private Image _targetImage;
     [SerializeField] private float _blinkTime;
 
     private void Update()
     { 
         if (_blinkTime < 0.5f)
         {
-            _targetImage = GetComponent<Image>();
-            _targetImage.color = new Color(1,1,1,1-_blinkTime);
+            //_targetImage = GetComponent<Image>();
+            //_targetImage.color = new Color(1,1,1,1-_blinkTime);
+            GetComponent<SpriteRenderer>().color = new Color(1,1,1,1-_blinkTime);
         }
         else
         {
-            _targetImage.color = new Color(1, 1, 1, _blinkTime);
+           // _targetImage.color = new Color(1, 1, 1, _blinkTime);
+           GetComponent<SpriteRenderer>().color = new Color(1,1,1,_blinkTime);
             if (_blinkTime > 1)
             {
                 _blinkTime = 0;
