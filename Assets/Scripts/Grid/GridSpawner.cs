@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class GridSpawner : MonoBehaviour
 {
@@ -56,11 +57,11 @@ public class GridSpawner : MonoBehaviour
         _gameStartManager.AddCharacter(spawnedCharacter); // 참조로 AddCharacter 호출
 
         // SpriteRenderer의 sortingOrder 설정
-        SpriteRenderer spriteRenderer = spawnedCharacter.GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null)
+        SortingGroup sortingGroup = spawnedCharacter.GetComponentInChildren<SortingGroup>();
+        if (sortingGroup != null)
         {
-            spriteRenderer.sortingOrder = (int)(_gridSize.y - y);
-            Debug.Log($"캐릭터 위치 ({x}, {y})  {spriteRenderer.sortingOrder}");
+            sortingGroup.sortingOrder = (int)(_gridSize.y - y);
+            Debug.Log($"캐릭터 위치 ({x}, {y})  {sortingGroup.sortingOrder}");
         }
         else
         {

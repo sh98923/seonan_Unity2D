@@ -35,7 +35,7 @@ public class GameStartManager : MonoBehaviour
             }
         }
 
-        yield return null; // 모든 캐릭터 이동 시작
+        yield return null; // 모든 캐릭터 이동 시작 <- '다음 프레임에서 다시 실행'을 의미
     }
 
     private IEnumerator MoveCharacter(GameObject character, Vector3 targetPosition)
@@ -44,11 +44,8 @@ public class GameStartManager : MonoBehaviour
 
         while (distance > 0.1f)
         {
-            character.transform.position = Vector3.MoveTowards(
-                character.transform.position,
-                targetPosition,
-                _moveSpeed * Time.deltaTime
-            );
+            character.transform.position = Vector3.MoveTowards(character.transform.position, targetPosition, 
+                                           _moveSpeed * Time.deltaTime);
 
             distance = Vector3.Distance(character.transform.position, targetPosition);
             yield return null;

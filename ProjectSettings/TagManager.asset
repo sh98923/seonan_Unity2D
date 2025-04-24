@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -43,6 +44,9 @@ TagManager:
     locked: 0
   - name: Character
     uniqueID: 88844613
+    locked: 0
+  - name: BG
+    uniqueID: 3260640041
     locked: 0
   m_RenderingLayers:
   - Default
