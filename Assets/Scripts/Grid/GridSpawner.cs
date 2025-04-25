@@ -9,7 +9,6 @@ public class GridSpawner : MonoBehaviour
     [SerializeField] private Vector2 _gridSize = new Vector2(3, 3); // 그리드 크기
     [SerializeField] private float _cellSize = 2f; // 셀 크기
     [SerializeField] private GameObject _characterPrefab;
-    [SerializeField] private ChracterMove _characterMove;
 
     private Vector3[,] _spawnPositions;
     private int _curSpawnIndex = 0;
@@ -53,8 +52,8 @@ public class GridSpawner : MonoBehaviour
 
         // 캐릭터 생성
         Vector3 spawnPosition = _spawnPositions[x, y];
-        GameObject spawnedCharacter = Instantiate(_characterPrefab, spawnPosition, Quaternion.Euler(0, 180, 0));
-        _characterMove.AddCharacter(spawnedCharacter); // 참조로 AddCharacter 호출
+        GameObject spawnedCharacter = Instantiate(_characterPrefab, spawnPosition, Quaternion.identity);
+        //_characterMove.AddCharacter(spawnedCharacter); // 참조로 AddCharacter 호출
 
         // SpriteRenderer의 sortingOrder 설정
         SortingGroup sortingGroup = spawnedCharacter.GetComponentInChildren<SortingGroup>();
