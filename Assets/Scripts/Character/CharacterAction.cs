@@ -3,15 +3,8 @@ using UnityEngine;
 
 public class CharacterAction : MonoBehaviour
 {
-    enum State
-    {
-        Idle, Move, Attack, Dead
-    }
-
     private Transform _target;
     [SerializeField] private float _moveSpeed = 1.0f;
-
-    private State _state = State.Move;
 
     private void Start()
     {
@@ -23,16 +16,7 @@ public class CharacterAction : MonoBehaviour
     }
     private void Update()
     {
-        switch (_state)
-        {
-            case State.Idle:
-                break;
-            case State.Move:
-                MoveToTarget();
-                break;
-            case State.Attack:
-                break;
-        }
+        MoveToTarget();
     }
 
     public void Move()
@@ -40,19 +24,13 @@ public class CharacterAction : MonoBehaviour
         print("Move");
     }
 
-    private void FindEnemy()
-    {
-        
-    }
-
-    private void MoveToTarget()
+    public void MoveToTarget()
     {
         if (!_target)
         {
             Debug.Log("targeterror");
             return;
         }
-        
 
         Vector3 direction = _target.position - transform.position;
         float distance = direction.magnitude;

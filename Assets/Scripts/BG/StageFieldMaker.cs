@@ -17,7 +17,7 @@ public class BG : MonoBehaviour
 
     private void Awake()
     {
-        GameObject bgPrefab = Resources.Load<GameObject>("Prefab/StageFieldParts");
+        GameObject bgPrefab = Resources.Load<GameObject>("Prefabs/StageFieldParts");
 
         _bgObjects.Capacity = _bgNum;
 
