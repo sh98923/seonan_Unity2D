@@ -14,34 +14,45 @@ public class Character : MonoBehaviour
     private GameObject _character;
     private Animator _animator;
     private Transform _target;
-    private Collider _collider;
 
     [SerializeField]
     private int _moveSpeed = 3;
 
     private int _enemyLayerMask;
 
-    private State _curState;
+    private State _curState = State.Idle;
 
     private void Awake()
     {
         DataManager.Instance.LoadData();
 
-        _character = GetComponent<GameObject>();
+        _characterData = DataManager.Instance.GetCharacterData(8);
+
+        _character = gameObject;
         _animator = GetComponentInChildren<Animator>();
-        _collider = GetComponent<Collider>();
 
         _enemyLayerMask = LayerMask.GetMask("Enemy");
 
     }
 
+    private void Start()
+    {
+        
+    }
+
     private void Update()
     {
+
+        if (GameStartManager.Instance != null && GameStartManager.Instance.IsButtonClicked && _curState == State.Idle)
+            StartBattle();
+
         switch(_curState)
         {
             case State.Idle:
+                _animator.SetFloat("Speed", 0);
                 break;
             case State.Move:
+                _animator.SetFloat("Speed", 2.0f);
                 MoveToTarget();
                 break;
             case State.Attack:
@@ -56,6 +67,7 @@ public class Character : MonoBehaviour
         _curState = State.Idle;
         Debug.Log(_curState);
     }
+
     public void StartBattle()
     {
         if (_curState != State.Idle) return;
@@ -63,15 +75,24 @@ public class Character : MonoBehaviour
         _curState = State.Move;
         Debug.Log(_curState);
     }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 50);
+    }
+
     private void SetTarget()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, _characterData.Range, _enemyLayerMask);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 50, _enemyLayerMask);
+
+        if (colliders.Length == 0) return;
 
         float minDistance = float.MaxValue;
 
         _target = null;
 
-        foreach(Collider collider in colliders)
+        foreach(Collider2D collider in colliders)
         {
             float distance = Vector2.Distance(transform.position, collider.transform.position);
 
@@ -98,11 +119,27 @@ public class Character : MonoBehaviour
 
         SetTarget();
 
-        if (_target == null) return;
+        bool hasLogged = false;
+
+        if (_target == null && !hasLogged)
+        {
+            Debug.Log("null");
+            hasLogged = true;
+            return;
+        }
 
         Vector3 direction = _target.position - transform.position;
         float distance = direction.magnitude;
 
+        if(distance < _characterData.Range)
+        {
+            _animator.SetFloat("Speed", 0);
+            _curState = State.Attack;
+            return;
+        }
+
         transform.Translate(direction.normalized * _moveSpeed * Time.deltaTime);
+
+        Debug.Log(_target);
     }
 }

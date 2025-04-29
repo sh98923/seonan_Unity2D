@@ -12,7 +12,7 @@ public class CharacterAction : MonoBehaviour
 
         if(_target == null) Debug.Log("error") ;
 
-        GameStartManager.CharacterMoveEvnet += Move;
+        //GameStartManager.CharacterMoveEvnet += Move;
     }
     private void Update()
     {
