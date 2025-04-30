@@ -26,9 +26,15 @@ public class Character : MonoBehaviour
     {
         DataManager.Instance.LoadData();
 
-        _characterData = DataManager.Instance.GetCharacterData(8);
+        //_characterData = DataManager.Instance.GetCharacterData(8);
+        int totalCharacters = DataManager.Instance.GetTotalCharacterCount();
+        
+        for (int i = 1; i < totalCharacters; i++)
+        {
+            _characterData = DataManager.Instance.GetCharacterData(i);
+        }
 
-        _character = gameObject;
+        //_character = gameObject;
         _animator = GetComponentInChildren<Animator>();
 
         _enemyLayerMask = LayerMask.GetMask("Enemy");
@@ -52,7 +58,7 @@ public class Character : MonoBehaviour
                 _animator.SetFloat("Speed", 0);
                 break;
             case State.Move:
-                _animator.SetFloat("Speed", 2.0f);
+                _animator.SetFloat("Speed", 1.0f);
                 MoveToTarget();
                 break;
             case State.Attack:
@@ -79,7 +85,7 @@ public class Character : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 50);
+        Gizmos.DrawWireSphere(transform.position, _characterData.Range);
     }
 
     private void SetTarget()

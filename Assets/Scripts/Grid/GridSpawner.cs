@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UIElements;
 
 public class GridSpawner : MonoBehaviour
 {
+    private CharacterData _characterData;
     [SerializeField] private GameObject _gridCellPrefab; // 그리드 셀 프리팹
     [SerializeField] private Vector2 _gridSize = new Vector2(3, 3); // 그리드 크기
     [SerializeField] private float _cellSize = 2f; // 셀 크기
@@ -12,6 +14,18 @@ public class GridSpawner : MonoBehaviour
 
     private Vector3[,] _spawnPositions;
     private int _curSpawnIndex = 0;
+
+    private void Awake()
+    {
+        DataManager.Instance.LoadData();
+
+        int totalCharacters = DataManager.Instance.GetTotalCharacterCount();
+        
+        for(int i = 1; i < totalCharacters; i++)
+        {
+            _characterData = DataManager.Instance.GetCharacterData(i);
+        }
+    }
 
     private void Start()
     {
@@ -52,8 +66,8 @@ public class GridSpawner : MonoBehaviour
 
         // 캐릭터 생성
         Vector3 spawnPosition = _spawnPositions[x, y];
+
         GameObject spawnedCharacter = Instantiate(_characterPrefab, spawnPosition, Quaternion.identity);
-        //_characterMove.AddCharacter(spawnedCharacter); // 참조로 AddCharacter 호출
 
         // SpriteRenderer의 sortingOrder 설정
         SortingGroup sortingGroup = spawnedCharacter.GetComponentInChildren<SortingGroup>();

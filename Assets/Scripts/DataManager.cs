@@ -26,6 +26,11 @@ public class DataManager : Singleton<DataManager>
         LoadCharacterTable();
     }
 
+    public int GetTotalCharacterCount()
+    {
+        return characterDatas.Count;
+    }
+
     private void LoadCharacterTable()
     {
         TextAsset textAsset = Resources.Load<TextAsset>("Tables/PlayableTable");
@@ -49,6 +54,9 @@ public class DataManager : Singleton<DataManager>
             characterData.Atk = int.Parse(data[4]);
             characterData.CriRate = float.Parse(data[5]);
             characterData.Range = float.Parse(data[6]);
+
+            if (characterDatas.ContainsKey(characterData.Key))
+                continue;
 
             characterDatas.Add(characterData.Key, characterData);
         }
