@@ -62,6 +62,10 @@ public class Character : MonoBehaviour
                 MoveToTarget();
                 break;
             case State.Attack:
+                if (_target = null)
+                    SetIdle();
+                else
+                    StartAttack();
                 break;
             case State.Dead:
                 break;
@@ -112,16 +116,6 @@ public class Character : MonoBehaviour
 
     private void MoveToTarget()
     {
-        //if (!_target)
-        //{
-        //    Debug.Log("targeterror");
-        //    return;
-        //}
-        //
-        //Vector3 direction = _target.position - transform.position;
-        //float distance = direction.magnitude;
-        //
-        //transform.Translate(direction.normalized * _moveSpeed * Time.deltaTime);
 
         SetTarget();
 
@@ -141,6 +135,7 @@ public class Character : MonoBehaviour
         {
             _animator.SetFloat("Speed", 0);
             _curState = State.Attack;
+            StartAttack();
             return;
         }
 
@@ -148,4 +143,14 @@ public class Character : MonoBehaviour
 
         Debug.Log(_target);
     }
+
+    private void StartAttack()
+    {
+        if (_curState != State.Attack) return;
+
+        _animator.SetTrigger("Attack");
+
+        Debug.Log("Attack");
+    }
+
 }

@@ -13,6 +13,7 @@ public class GridSpawner : MonoBehaviour
     [SerializeField] private GameObject _characterPrefab;
 
     private Vector3[,] _spawnPositions;
+    private bool[,] _isGridFilled;
     private int _curSpawnIndex = 0;
 
     private void Awake()
@@ -35,6 +36,8 @@ public class GridSpawner : MonoBehaviour
     private void CreateGrid()
     {
         _spawnPositions = new Vector3[(int)_gridSize.x, (int)_gridSize.y];
+        _isGridFilled = new bool[(int)_gridSize.x, (int)_gridSize.y];
+
         Vector2 gridOrigin = new Vector2(-7, -2.5f); // 그리드 시작점
 
         // 그리드 생성
@@ -44,6 +47,7 @@ public class GridSpawner : MonoBehaviour
             {
                 Vector2 spawnPosition = gridOrigin + new Vector2(x * _cellSize * 1.2f, y * _cellSize * 0.6f); // 셀 위치 계산
                 _spawnPositions[x,y] = spawnPosition;
+                _isGridFilled[x, y] = false;
 
                 // 셀 생성
                 Instantiate(_gridCellPrefab, spawnPosition, Quaternion.identity, transform);
@@ -54,19 +58,29 @@ public class GridSpawner : MonoBehaviour
     public void SpawnCharacter()
     {
         // 현재 스폰 인덱스 계산
-        int x = _curSpawnIndex % (int)_gridSize.x;
+        int x = (int)_characterData.PositionX;
         int y = _curSpawnIndex / (int)_gridSize.x;
+
+        while (y < _gridSize.y && _isGridFilled[x, y])
+        {
+            y++; // 다음 줄로 이동
+        }
 
         // 범위를 초과하지 않도록 체크
         if (y >= _gridSize.y)
         {
-            Debug.LogWarning("모든 그리드가 가득 찼습니다!");
+            Debug.LogWarning($"그리드의 열 {x}에 빈 자리가 없습니다!");
+            return;
+        }
+
+        if (_isGridFilled[x,y])
+        {
+            Debug.LogWarning($"그리드 위치 ({x}, {y})에 캐릭터가 이미 스폰되었습니다!");
             return;
         }
 
         // 캐릭터 생성
         Vector3 spawnPosition = _spawnPositions[x, y];
-
         GameObject spawnedCharacter = Instantiate(_characterPrefab, spawnPosition, Quaternion.identity);
 
         // SpriteRenderer의 sortingOrder 설정
@@ -81,7 +95,7 @@ public class GridSpawner : MonoBehaviour
             Debug.LogError("SpriteRenderer가 캐릭터 프리팹에 없습니다.");
         }
 
-        // 인덱스 증가
-        _curSpawnIndex++;
+        _isGridFilled[x, y] = true;
+
     }
 }
