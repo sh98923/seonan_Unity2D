@@ -11,7 +11,6 @@ public class Character : MonoBehaviour
     }
 
     private CharacterData _characterData;
-    private GameObject _character;
     private Animator _animator;
     private Transform _target;
 
@@ -34,7 +33,6 @@ public class Character : MonoBehaviour
             _characterData = DataManager.Instance.GetCharacterData(i);
         }
 
-        //_character = gameObject;
         _animator = GetComponentInChildren<Animator>();
 
         _enemyLayerMask = LayerMask.GetMask("Enemy");
@@ -48,9 +46,11 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
-
-        if (GameStartManager.Instance != null && GameStartManager.Instance.IsButtonClicked && _curState == State.Idle)
+        if (GameStartManager.Instance != null && GameStartManager.Instance.IsButtonClicked)
+        {
             StartBattle();
+            GameStartManager.Instance.ResetButtonClicked();
+        }
 
         switch(_curState)
         {
@@ -62,20 +62,16 @@ public class Character : MonoBehaviour
                 MoveToTarget();
                 break;
             case State.Attack:
-                if (_target = null)
-                    SetIdle();
-                else
-                    StartAttack();
+                ManageAttackState();
                 break;
             case State.Dead:
                 break;
         }
     }
-
-    public void SetIdle()
+    private void SetIdle()
     {
         _curState = State.Idle;
-        Debug.Log(_curState);
+        //_animator.SetFloat("Speed", 0);
     }
 
     public void StartBattle()
@@ -86,17 +82,15 @@ public class Character : MonoBehaviour
         Debug.Log(_curState);
     }
 
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _characterData.Range);
-    }
-
-    private void SetTarget()
+    private bool SetTarget()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 50, _enemyLayerMask);
 
-        if (colliders.Length == 0) return;
+        if (colliders.Length == 0)
+        {
+            _target = null;
+            return false;
+        }
 
         float minDistance = float.MaxValue;
 
@@ -112,6 +106,8 @@ public class Character : MonoBehaviour
                 _target = collider.transform;
             }
         }
+
+        return _target != null;
     }
 
     private void MoveToTarget()
@@ -123,7 +119,7 @@ public class Character : MonoBehaviour
 
         if (_target == null && !hasLogged)
         {
-            Debug.Log("null");
+            //Debug.Log("null");
             hasLogged = true;
             return;
         }
@@ -131,7 +127,7 @@ public class Character : MonoBehaviour
         Vector3 direction = _target.position - transform.position;
         float distance = direction.magnitude;
 
-        if(distance < _characterData.Range)
+        if(distance < 3)
         {
             _animator.SetFloat("Speed", 0);
             _curState = State.Attack;
@@ -141,7 +137,7 @@ public class Character : MonoBehaviour
 
         transform.Translate(direction.normalized * _moveSpeed * Time.deltaTime);
 
-        Debug.Log(_target);
+        //Debug.Log(_target);
     }
 
     private void StartAttack()
@@ -150,7 +146,30 @@ public class Character : MonoBehaviour
 
         _animator.SetTrigger("Attack");
 
-        Debug.Log("Attack");
+        //Debug.Log("Attack");
     }
 
+    private void ManageAttackState()
+    {
+        if (_target == null)
+        {
+            Debug.Log("new target trace");
+
+            if (SetTarget())
+                _curState = State.Move;
+            else
+            {
+                SetIdle();
+                Debug.Log(_curState);
+                return;
+            }
+        }
+        else
+            StartAttack();
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _characterData.Range);
+    }
 }

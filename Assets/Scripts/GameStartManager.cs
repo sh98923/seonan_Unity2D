@@ -33,4 +33,8 @@ public class GameStartManager : MonoBehaviour
         
         //StartCoroutine(MoveCharactersForward(6)); 
     }
+    public void ResetButtonClicked()
+    {
+        IsButtonClicked = false;
+    }
 }
