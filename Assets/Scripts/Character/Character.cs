@@ -25,7 +25,6 @@ public class Character : MonoBehaviour
     {
         DataManager.Instance.LoadData();
 
-        //_characterData = DataManager.Instance.GetCharacterData(8);
         int totalCharacters = DataManager.Instance.GetTotalCharacterCount();
         
         for (int i = 1; i < totalCharacters; i++)
@@ -38,10 +37,19 @@ public class Character : MonoBehaviour
         _enemyLayerMask = LayerMask.GetMask("Enemy");
 
     }
-
-    private void Start()
+    private void OnEnable()
     {
-        
+        if(GameStartManager.Instance != null)
+        {
+            GameStartManager.Instance.BattleStartEvent += StartBattle;
+        }
+    }
+    private void OnDisable()
+    {
+        if(GameStartManager.Instance != null)
+        {
+            GameStartManager.Instance.BattleStartEvent -= StartBattle;
+        }
     }
 
     private void Update()
@@ -71,7 +79,6 @@ public class Character : MonoBehaviour
     private void SetIdle()
     {
         _curState = State.Idle;
-        //_animator.SetFloat("Speed", 0);
     }
 
     public void StartBattle()
@@ -112,7 +119,6 @@ public class Character : MonoBehaviour
 
     private void MoveToTarget()
     {
-
         SetTarget();
 
         bool hasLogged = false;
@@ -136,8 +142,6 @@ public class Character : MonoBehaviour
         }
 
         transform.Translate(direction.normalized * _moveSpeed * Time.deltaTime);
-
-        //Debug.Log(_target);
     }
 
     private void StartAttack()
@@ -156,7 +160,9 @@ public class Character : MonoBehaviour
             Debug.Log("new target trace");
 
             if (SetTarget())
+            {
                 _curState = State.Move;
+            }   
             else
             {
                 SetIdle();
@@ -165,7 +171,10 @@ public class Character : MonoBehaviour
             }
         }
         else
+        {
             StartAttack();
+        }
+
     }
     void OnDrawGizmos()
     {
