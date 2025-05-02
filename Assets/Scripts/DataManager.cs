@@ -21,6 +21,12 @@ public class DataManager : Singleton<DataManager>
     {
         return characterDatas[key];
     }
+
+    public bool TryGetCharacterData(int key, out CharacterData characterData)
+    {
+        return characterDatas.TryGetValue(key, out characterData);
+    }
+
     public void LoadData()
     {
         LoadCharacterTable();

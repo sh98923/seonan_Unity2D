@@ -133,7 +133,7 @@ public class Character : MonoBehaviour
         Vector3 direction = _target.position - transform.position;
         float distance = direction.magnitude;
 
-        if(distance < 3)
+        if(distance < _characterData.Range)
         {
             _animator.SetFloat("Speed", 0);
             _curState = State.Attack;
@@ -176,6 +176,14 @@ public class Character : MonoBehaviour
         }
 
     }
+    public void Initialize(CharacterData data)
+    {
+        _characterData = data;
+
+        // 초기화 작업 (체력, 데미지 등)
+        Debug.Log($"캐릭터 생성: ID={data.Name}, 체력={data.Hp}, 공격력={data.Atk}");
+    }
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

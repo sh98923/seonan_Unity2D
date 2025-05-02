@@ -30,7 +30,6 @@ public class GameStartManager : MonoBehaviour
         IsButtonClicked = true;
 
         BattleStartEvent?.Invoke();
-        //StartCoroutine(MoveCharactersForward(6)); 
     }
     public void ResetButtonClicked()
     {
