@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c1fab3802a3111c44a36692f256223b2
+guid: ff886084d432c534ba0a50d93e8e1925
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4089751476444208029
-    second: ForwardSpawnBtn (2)_0
+      213: -4159475462185389370
+    second: ElfMage_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,17 +96,43 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ForwardSpawnBtn (2)_0
+      name: ElfMage_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 27
-        width: 203
-        height: 151
+        x: 15
+        y: 5
+        width: 365
+        height: 330
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d9b1615ac47b1c830800000000000000
-      internalID: 4089751476444208029
+      spriteID: 6c27c70ea139646c0800000000000000
+      internalID: -4159475462185389370
       vertices: []
       indices: 
       edges: []
@@ -134,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      ForwardSpawnBtn (2)_0: 4089751476444208029
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

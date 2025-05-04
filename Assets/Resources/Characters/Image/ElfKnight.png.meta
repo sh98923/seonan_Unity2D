@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 61866dbd5638b644c934048d5b316146
+guid: e4a778c1dd2aeec448d818076b2a9b15
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4168024058027221419
-    second: MiddleSpawnBtn_0
+      213: -3756145367432952110
+    second: ElfKnight_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MiddleSpawnBtn_0
+      name: ElfKnight_0
       rect:
         serializedVersion: 2
-        x: 51
-        y: 27
-        width: 228
-        height: 206
+        x: 21
+        y: 16
+        width: 300
+        height: 324
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 55e510ec3343826c0800000000000000
-      internalID: -4168024058027221419
+      spriteID: 2d60e6170bd7fdbc0800000000000000
+      internalID: -3756145367432952110
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      MiddleSpawnBtn_0: -4168024058027221419
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

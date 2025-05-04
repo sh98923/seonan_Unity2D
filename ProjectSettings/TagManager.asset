@@ -42,8 +42,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Character
+  - name: BacklineCharacter
     uniqueID: 88844613
+    locked: 0
+  - name: MiddleCharacter
+    uniqueID: 2696885941
+    locked: 0
+  - name: ForwardCharacter
+    uniqueID: 2150471569
     locked: 0
   - name: BG
     uniqueID: 3260640041

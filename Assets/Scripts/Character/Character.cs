@@ -16,14 +16,16 @@ public class Character : MonoBehaviour
 
     [SerializeField]
     private int _moveSpeed = 3;
-
+    private int _currentHp;
     private int _enemyLayerMask;
+
+    private bool _isDead = false;
 
     private State _curState = State.Idle;
 
     private void Awake()
     {
-        DataManager.Instance.LoadData();
+        DataManager.Instance.LoadCharacterData();
 
         int totalCharacters = DataManager.Instance.GetTotalCharacterCount();
         
@@ -36,7 +38,9 @@ public class Character : MonoBehaviour
 
         _enemyLayerMask = LayerMask.GetMask("Enemy");
 
+        _currentHp = _characterData.Hp;
     }
+
     private void OnEnable()
     {
         if(GameStartManager.Instance != null)
@@ -44,6 +48,7 @@ public class Character : MonoBehaviour
             GameStartManager.Instance.BattleStartEvent += StartBattle;
         }
     }
+
     private void OnDisable()
     {
         if(GameStartManager.Instance != null)
@@ -52,8 +57,22 @@ public class Character : MonoBehaviour
         }
     }
 
+    private void Start()
+    {   
+        //죽음 모션 테스트용 도트딜
+        //InvokeRepeating("DecreaseHpOverTime", 1f, 1f);
+    }
+
     private void Update()
     {
+        if (_curState == State.Dead)
+            return;
+
+        if(Input.GetKeyDown(KeyCode.J) && !_isDead)
+        {
+            Die();
+        }
+
         if (GameStartManager.Instance != null && GameStartManager.Instance.IsButtonClicked)
         {
             StartBattle();
@@ -76,6 +95,21 @@ public class Character : MonoBehaviour
                 break;
         }
     }
+
+    private void DecreaseHpOverTime()
+    {
+        if (_curState == State.Dead)
+            return;
+
+        _currentHp -= 10;
+        Debug.Log("Hp : {_currentHp}");
+
+        if (_currentHp <= 0)
+        {
+            Die();
+        }
+    }
+
     private void SetIdle()
     {
         _curState = State.Idle;
@@ -149,8 +183,6 @@ public class Character : MonoBehaviour
         if (_curState != State.Attack) return;
 
         _animator.SetTrigger("Attack");
-
-        //Debug.Log("Attack");
     }
 
     private void ManageAttackState()
@@ -174,11 +206,37 @@ public class Character : MonoBehaviour
         {
             StartAttack();
         }
-
     }
+
+    public void TakeDamage(int damage)
+    {
+        if (_curState == State.Dead)
+            return;
+
+        _currentHp -= damage;
+        Debug.Log("Hp : {_currentHp}");
+
+        if( _currentHp <= 0 )
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        if(_isDead) return;
+
+        _isDead = true;
+        _curState = State.Dead;
+        _animator.SetTrigger("Death");
+        Debug.Log("chracter die");
+        Debug.Log(_isDead);
+    }
+
     public void Initialize(CharacterData data)
     {
         _characterData = data;
+        _currentHp = data.Hp;
 
         // 초기화 작업 (체력, 데미지 등)
         Debug.Log($"캐릭터 생성: ID={data.Name}, 체력={data.Hp}, 공격력={data.Atk}");

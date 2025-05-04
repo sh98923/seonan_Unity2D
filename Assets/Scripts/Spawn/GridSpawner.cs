@@ -16,7 +16,7 @@ public class GridSpawner : MonoBehaviour
 
     private void Awake()
     {
-        DataManager.Instance.LoadData();
+        DataManager.Instance.LoadCharacterData();
         _filledPosition = new HashSet<Vector2Int>();
     }
 
@@ -61,7 +61,7 @@ public class GridSpawner : MonoBehaviour
 
         if (_filledPosition.Contains(gridPosition))
         {
-            Debug.LogWarning($"그리드 위치 ({gridPosition.x}, {gridPosition.y})가 이미 점유되었습니다!");
+            Debug.LogWarning($"남은 자리가 없습니다!");
             return;
         }
 
