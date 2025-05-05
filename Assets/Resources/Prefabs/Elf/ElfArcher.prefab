@@ -2873,8 +2873,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8458713790667319792}
-  - component: {fileID: 7509161360140960267}
   - component: {fileID: 6644552439904179910}
+  - component: {fileID: -7411675609654340209}
   m_Layer: 6
   m_Name: ElfArcher
   m_TagString: Player
@@ -2902,19 +2902,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7509161360140960267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6311861856165175232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f588bda34ab309448177fd39fe2a5d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _moveSpeed: 2
 --- !u!58 &6644552439904179910
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2951,6 +2938,19 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.33}
   m_Radius: 0.4
+--- !u!114 &-7411675609654340209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6311861856165175232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092d0734ce486c04e96f7e00e291427b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: 2
 --- !u!1 &6349283776411875601
 GameObject:
   m_ObjectHideFlags: 0

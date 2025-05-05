@@ -1,4 +1,10 @@
-Key,Stage,Minion,Archer,Defender,Warrior,Destroyer,Shaman,Assasin,Mage,Knight
-201,1,7,5,3,1,0,0,0,0,0
-202,2,0,0,0,0,5,2,3,1,0
-203,3,0,0,0,0,0,0,0,0,1
+Key,Name,Stage,Count
+201,SkeltonMinion,1,7
+202,SkeltonArcher,1,5
+203,SkeltonDefender,1,3
+204,SkeltonWarrior,1,1
+205,SkeltonDestroyer,2,5
+206,SkeltonShaman,2,2
+207,SkeltonAssasin,2,3
+208,SkeltonMage,2,1
+209,SkeltonKnight,3,1

@@ -2,7 +2,7 @@ using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using System.Collections.Generic;
 
-public struct CharacterData
+public struct PlayerData
 {
     public int Key;
     public string Name;
@@ -22,16 +22,23 @@ public struct EnemyData
     public int Atk;
     public float CriRate;
     public float Range;
+    public int Count;
 }
 
 public class DataManager : Singleton<DataManager>
 {
-    private Dictionary<int, CharacterData> characterDatas = new Dictionary<int, CharacterData>();
+    private Dictionary<int, PlayerData> playerDatas = new Dictionary<int, PlayerData>();
     private Dictionary<int, EnemyData> enemyDatas = new Dictionary<int, EnemyData>();
 
-    public CharacterData GetCharacterData(int key)
+    public void Awake()
     {
-        return characterDatas[key];
+        LoadPlayerData();
+        LoadEnemyData();
+    }
+
+    public PlayerData GetPlayerData(int key)
+    {
+        return playerDatas[key];
     }
 
     public EnemyData GetEnemyData(int key)
@@ -39,29 +46,19 @@ public class DataManager : Singleton<DataManager>
         return enemyDatas[key];
     }
 
-    public bool TryGetCharacterData(int key, out CharacterData characterData)
+    private void LoadPlayerData()
     {
-        return characterDatas.TryGetValue(key, out characterData);
+        LoadPlayerTable();
     }
 
-    public bool TryGetEnemyData(int key, out EnemyData enemyData)
-    {
-        return enemyDatas.TryGetValue(key, out enemyData);
-    }
-
-    public void LoadCharacterData()
-    {
-        LoadCharacterTable();
-    }
-
-    public void LoadEnemyData()
+    private void LoadEnemyData()
     {
         LoadEnemyTable();
     }
 
-    public int GetTotalCharacterCount()
+    public int GetTotalPlayerCount()
     {
-        return characterDatas.Count;
+        return playerDatas.Count;
     }
 
     public int GetTotalEnemyCount()
@@ -69,7 +66,7 @@ public class DataManager : Singleton<DataManager>
         return enemyDatas.Count;
     }
 
-    private void LoadCharacterTable()
+    private void LoadPlayerTable()
     {
         TextAsset textAsset = Resources.Load<TextAsset>("Tables/PlayableTable");
 
@@ -84,19 +81,19 @@ public class DataManager : Singleton<DataManager>
 
             string[] data = str[i].Split(',');
 
-            CharacterData characterData;
-            characterData.Key = int.Parse(data[0]);
-            characterData.Name = data[1];
-            characterData.PositionX = int.Parse(data[2]);
-            characterData.Hp = int.Parse(data[3]);
-            characterData.Atk = int.Parse(data[4]);
-            characterData.CriRate = float.Parse(data[5]);
-            characterData.Range = float.Parse(data[6]);
+            PlayerData playerData;
+            playerData.Key = int.Parse(data[0]);
+            playerData.Name = data[1];
+            playerData.PositionX = int.Parse(data[2]);
+            playerData.Hp = int.Parse(data[3]);
+            playerData.Atk = int.Parse(data[4]);
+            playerData.CriRate = float.Parse(data[5]);
+            playerData.Range = float.Parse(data[6]);
 
-            if (characterDatas.ContainsKey(characterData.Key))
+            if (playerDatas.ContainsKey(playerData.Key))
                 continue;
 
-            characterDatas.Add(characterData.Key, characterData);
+            playerDatas.Add(playerData.Key, playerData);
         }
     }
 
@@ -123,11 +120,27 @@ public class DataManager : Singleton<DataManager>
             enemyData.Atk = int.Parse(data[4]);
             enemyData.CriRate = float.Parse(data[5]);
             enemyData.Range = float.Parse(data[6]);
+            enemyData.Count = int.Parse(data[7]);
 
             if (enemyDatas.ContainsKey(enemyData.Key))
                 continue;
 
             enemyDatas.Add(enemyData.Key, enemyData);
         }
+    }
+
+    public List<EnemyData> GetStageEnemies(int stageKey)
+    {
+        List<EnemyData> stageEnemies = new List<EnemyData>();
+
+        foreach (var enemy in enemyDatas.Values)
+        {
+            if (enemy.SpawnStage == stageKey)
+            {
+                stageEnemies.Add(enemy);
+            }
+        }
+
+        return stageEnemies;
     }
 }

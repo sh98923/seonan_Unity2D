@@ -12,7 +12,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Character
+  - Player
   - Enemy
   - 
   - 
@@ -50,6 +50,9 @@ TagManager:
     locked: 0
   - name: ForwardCharacter
     uniqueID: 2150471569
+    locked: 0
+  - name: Enemy
+    uniqueID: 4004601475
     locked: 0
   - name: BG
     uniqueID: 3260640041

@@ -1428,6 +1428,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5006143028437850817}
   - component: {fileID: 6241999781100668972}
+  - component: {fileID: 9181208345024448580}
   m_Layer: 7
   m_Name: SkeltonMage
   m_TagString: Enemy
@@ -1485,12 +1486,25 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.33}
   m_Radius: 0.4
+--- !u!114 &9181208345024448580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3869153255920872131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c463dd07af0d6640b97ef897b1d05b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: 2
 --- !u!1 &3897179262474473887
 GameObject:
   m_ObjectHideFlags: 0
@@ -3566,8 +3580,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7587365821332304633}
   m_Enabled: 1
-  m_SortingLayerID: 88844613
-  m_SortingLayer: 1
+  m_SortingLayerID: -290365821
+  m_SortingLayer: 4
   m_SortingOrder: 5
   m_SortAtRoot: 0
 --- !u!95 &6453432209904427716

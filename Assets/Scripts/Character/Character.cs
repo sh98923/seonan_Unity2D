@@ -3,45 +3,33 @@ using UnityEngine;
 using UnityEngine.TextCore.Text;
 using static UnityEngine.GraphicsBuffer;
 
-public class Character : MonoBehaviour
+public abstract class Character : MonoBehaviour
 {
-    private enum State
+    protected enum State
     {
         Idle, Move, Attack, Dead
     }
 
-    private CharacterData _characterData;
-    private Animator _animator;
-    private Transform _target;
+    protected Animator _animator;
+    protected Transform _target;
+
+    protected abstract int _targetLayerMask { get; }
+    protected abstract float _characterRange {  get; }
 
     [SerializeField]
-    private int _moveSpeed = 3;
-    private int _currentHp;
-    private int _enemyLayerMask;
+    protected int _moveSpeed = 2;
+    protected int _currentHp;
 
-    private bool _isDead = false;
+    protected bool _isDead = false;
 
-    private State _curState = State.Idle;
+    protected State _curState = State.Idle;
 
-    private void Awake()
+    protected virtual void Awake()
     {
-        DataManager.Instance.LoadCharacterData();
-
-        int totalCharacters = DataManager.Instance.GetTotalCharacterCount();
-        
-        for (int i = 1; i < totalCharacters; i++)
-        {
-            _characterData = DataManager.Instance.GetCharacterData(i);
-        }
-
         _animator = GetComponentInChildren<Animator>();
-
-        _enemyLayerMask = LayerMask.GetMask("Enemy");
-
-        _currentHp = _characterData.Hp;
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         if(GameStartManager.Instance != null)
         {
@@ -49,7 +37,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         if(GameStartManager.Instance != null)
         {
@@ -57,13 +45,13 @@ public class Character : MonoBehaviour
         }
     }
 
-    private void Start()
+    protected virtual void Start()
     {   
         //죽음 모션 테스트용 도트딜
         //InvokeRepeating("DecreaseHpOverTime", 1f, 1f);
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (_curState == State.Dead)
             return;
@@ -110,22 +98,22 @@ public class Character : MonoBehaviour
         }
     }
 
-    private void SetIdle()
+    protected virtual void SetIdle()
     {
         _curState = State.Idle;
     }
 
-    public void StartBattle()
+    protected virtual void StartBattle()
     {
         if (_curState != State.Idle) return;
 
         _curState = State.Move;
-        Debug.Log(_curState);
+        //Debug.Log(_curState);
     }
 
-    private bool SetTarget()
+    protected virtual bool SetTarget()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 50, _enemyLayerMask);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 50, _targetLayerMask);
 
         if (colliders.Length == 0)
         {
@@ -151,23 +139,17 @@ public class Character : MonoBehaviour
         return _target != null;
     }
 
-    private void MoveToTarget()
+    protected virtual void MoveToTarget()
     {
         SetTarget();
 
-        bool hasLogged = false;
-
-        if (_target == null && !hasLogged)
-        {
-            //Debug.Log("null");
-            hasLogged = true;
+        if (_target == null)
             return;
-        }
 
         Vector3 direction = _target.position - transform.position;
         float distance = direction.magnitude;
 
-        if(distance < _characterData.Range)
+        if(distance < _characterRange)
         {
             _animator.SetFloat("Speed", 0);
             _curState = State.Attack;
@@ -178,14 +160,14 @@ public class Character : MonoBehaviour
         transform.Translate(direction.normalized * _moveSpeed * Time.deltaTime);
     }
 
-    private void StartAttack()
+    protected virtual void StartAttack()
     {
         if (_curState != State.Attack) return;
 
         _animator.SetTrigger("Attack");
     }
 
-    private void ManageAttackState()
+    protected virtual void ManageAttackState()
     {
         if (_target == null)
         {
@@ -208,7 +190,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    protected virtual void TakeDamage(int damage)
     {
         if (_curState == State.Dead)
             return;
@@ -222,7 +204,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void Die()
+    protected virtual void Die()
     {
         if(_isDead) return;
 
@@ -230,21 +212,11 @@ public class Character : MonoBehaviour
         _curState = State.Dead;
         _animator.SetTrigger("Death");
         Debug.Log("chracter die");
-        Debug.Log(_isDead);
-    }
-
-    public void Initialize(CharacterData data)
-    {
-        _characterData = data;
-        _currentHp = data.Hp;
-
-        // 초기화 작업 (체력, 데미지 등)
-        Debug.Log($"캐릭터 생성: ID={data.Name}, 체력={data.Hp}, 공격력={data.Atk}");
     }
 
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _characterData.Range);
+        Gizmos.DrawWireSphere(transform.position, _characterRange);
     }
 }
