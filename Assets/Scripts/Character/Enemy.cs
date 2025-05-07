@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class Enemy : Character
 {
@@ -6,6 +7,8 @@ public class Enemy : Character
 
     protected override int _targetLayerMask => LayerMask.GetMask("Player");
     protected override float _characterRange => _enemyData.Range;
+
+    public event Action<Enemy> OnEnemyDefeated;
 
     protected override void Awake()
     {
@@ -16,13 +19,19 @@ public class Enemy : Character
             _enemyData = DataManager.Instance.GetEnemyData(i);
         }
 
-        _currentHp = _enemyData.Hp;
         base.Awake();
     }
 
     public void Initialize(EnemyData data)
     {
         _enemyData = data;
-        _enemyData.Hp = _currentHp;
+        _currentHp = _enemyData.Hp;
+    }
+
+    protected override void Die()
+    {
+        base.Die();
+        OnEnemyDefeated?.Invoke(this);
+        Destroy(gameObject, 1f);
     }
 }

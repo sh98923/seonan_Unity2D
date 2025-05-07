@@ -47,8 +47,7 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void Start()
     {   
-        //죽음 모션 테스트용 도트딜
-        //InvokeRepeating("DecreaseHpOverTime", 1f, 1f);
+        
     }
 
     protected virtual void Update()
@@ -56,18 +55,18 @@ public abstract class Character : MonoBehaviour
         if (_curState == State.Dead)
             return;
 
-        if(Input.GetKeyDown(KeyCode.J) && !_isDead)
+        if (GameStartManager.Instance != null && GameStartManager.Instance.IsButtonClicked)
+        {
+            StartBattle();
+            GameStartManager.Instance.IsButtonClicked = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.J) && !_isDead)
         {
             Die();
         }
 
-        if (GameStartManager.Instance != null && GameStartManager.Instance.IsButtonClicked)
-        {
-            StartBattle();
-            GameStartManager.Instance.ResetButtonClicked();
-        }
-
-        switch(_curState)
+        switch (_curState)
         {
             case State.Idle:
                 _animator.SetFloat("Speed", 0);
@@ -81,20 +80,6 @@ public abstract class Character : MonoBehaviour
                 break;
             case State.Dead:
                 break;
-        }
-    }
-
-    private void DecreaseHpOverTime()
-    {
-        if (_curState == State.Dead)
-            return;
-
-        _currentHp -= 10;
-        Debug.Log("Hp : {_currentHp}");
-
-        if (_currentHp <= 0)
-        {
-            Die();
         }
     }
 

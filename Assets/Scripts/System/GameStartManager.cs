@@ -31,18 +31,23 @@ public class GameStartManager : MonoBehaviour
     {
         if (_gridContainer != null) _gridContainer.SetActive(false);
         if (_buttonContainer != null) _buttonContainer.SetActive(false);
-
+        
         IsButtonClicked = true;
-
+        
         List<EnemyData> stageEnemies = DataManager.Instance.GetStageEnemies(_currentStage);
-
+        
         _enemySpawner.SpawnEnemies(stageEnemies);
-
+        
         BattleStartEvent?.Invoke();
     }
 
-    public void ResetButtonClicked()
+    public void ReturnToPlace()
     {
+        _gridContainer.SetActive(true);
+        _buttonContainer.SetActive(true);
+        
         IsButtonClicked = false;
+        
+        _currentStage++;
     }
 }

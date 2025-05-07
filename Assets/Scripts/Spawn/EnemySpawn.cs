@@ -10,8 +10,12 @@ public class EnemySpawn : MonoBehaviour
     private float rowSpacing = 1.5f;   // 행 간격
     private int columns = 3;          // 열 수
 
+    private List<Enemy> _alivedEnemies = new List<Enemy>(); // 살아있는 적들 리스트
+
     public void SpawnEnemies(List<EnemyData> enemies)
     {
+        _alivedEnemies.Clear();
+        
         foreach (var enemyData in enemies)
         {
             GameObject prefab = GetEnemyPrefabByName(enemyData.Name);
@@ -23,10 +27,11 @@ public class EnemySpawn : MonoBehaviour
 
                 // 적 데이터 초기화
                 Enemy enemyComponent = enemy.GetComponent<Enemy>();
-                if (enemyComponent != null)
-                {
-                    enemyComponent.Initialize(enemyData);
-                }
+                enemyComponent.Initialize(enemyData);
+
+                enemyComponent.OnEnemyDefeated += CheckEnemyDefeat;
+
+                _alivedEnemies.Add(enemyComponent);
             }
         }
     }
@@ -37,7 +42,7 @@ public class EnemySpawn : MonoBehaviour
             if (prefab.name == name)
                 return prefab;
         }
-        Debug.LogWarning($"Enemy prefab with name {name} not found.");
+
         return null;
     }
 
@@ -53,5 +58,21 @@ public class EnemySpawn : MonoBehaviour
         offset.y += randomYOffset;
 
         return startPosition + offset;
+    }
+
+    private void CheckEnemyDefeat(Enemy defeatedEnemy)
+    {
+        _alivedEnemies.Remove(defeatedEnemy);
+
+        if(isAllEnemiesDefeated())
+        {
+            Debug.Log("All defeated");
+            GameStartManager.Instance.ReturnToPlace();
+        }
+    }
+
+    public bool isAllEnemiesDefeated()
+    {
+        return _alivedEnemies.Count == 0;
     }
 }
