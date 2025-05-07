@@ -1915,9 +1915,9 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4064593657653666481}
   m_Enabled: 1
-  m_SortingLayerID: -1598081355
-  m_SortingLayer: 2
-  m_SortingOrder: 5
+  m_SortingLayerID: 88844613
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!95 &261738646334319047
 Animator:
@@ -3147,6 +3147,7 @@ GameObject:
   - component: {fileID: 8252123589881967418}
   - component: {fileID: 2651744225841628794}
   - component: {fileID: 3615321386553136473}
+  - component: {fileID: 417918412236813591}
   m_Layer: 6
   m_Name: ElfBishop
   m_TagString: Player
@@ -3223,6 +3224,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 2
+--- !u!114 &417918412236813591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7149208551058607029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 978d3c6c2bf13d54da2ce8bdcc523e57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7232043852072858307
 GameObject:
   m_ObjectHideFlags: 0

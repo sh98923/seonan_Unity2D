@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ElfRuneBlade_0: -2932932885736139672
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

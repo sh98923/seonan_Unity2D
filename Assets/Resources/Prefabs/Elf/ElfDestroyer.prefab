@@ -681,6 +681,7 @@ GameObject:
   - component: {fileID: 7537235816123612031}
   - component: {fileID: 546252173348695192}
   - component: {fileID: 6965969362607980927}
+  - component: {fileID: 5982744353943451525}
   m_Layer: 6
   m_Name: ElfDestroyer
   m_TagString: Player
@@ -757,6 +758,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 2
+--- !u!114 &5982744353943451525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644508509184991853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 978d3c6c2bf13d54da2ce8bdcc523e57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1856697097156977742
 GameObject:
   m_ObjectHideFlags: 0
@@ -1941,9 +1954,9 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4685181814492986005}
   m_Enabled: 1
-  m_SortingLayerID: -2144495727
-  m_SortingLayer: 3
-  m_SortingOrder: 6
+  m_SortingLayerID: 88844613
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!95 &7799115908090806067
 Animator:

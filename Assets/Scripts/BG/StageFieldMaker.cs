@@ -41,14 +41,14 @@ public class BG : MonoBehaviour
 
     private void FixedUpdate()
     {
-        for(int i = 0; i< _bgObjects.Count; i++)
+        for (int i = 0; i < _bgObjects.Count; i++)
         {
             Transform bg = _bgObjects[i].transform;
             SpriteRenderer renderer = bg.GetComponent<SpriteRenderer>();
 
             bg.Translate(Vector2.left * _bgSpeed * Time.deltaTime);
 
-            if(renderer.bounds.max.x < worldScreenLeft.x)
+            if (renderer.bounds.max.x < worldScreenLeft.x)
             {
                 Vector2 pos = bg.localPosition;
                 pos.x += renderer.bounds.size.x * (_bgNum - 1);

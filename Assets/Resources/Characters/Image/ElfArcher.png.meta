@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ElfArcher_0: -5868710471637067004
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ElfBishop_0: -8608515903681931905
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

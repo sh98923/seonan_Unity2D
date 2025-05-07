@@ -425,6 +425,7 @@ GameObject:
   - component: {fileID: 3548666256879168762}
   - component: {fileID: 1936587409509214953}
   - component: {fileID: 3510675568294193821}
+  - component: {fileID: 5558984455075970048}
   m_Layer: 6
   m_Name: ElfKnight
   m_TagString: Player
@@ -501,6 +502,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 2
+--- !u!114 &5558984455075970048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992518889194338473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 978d3c6c2bf13d54da2ce8bdcc523e57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1257461277997187046
 GameObject:
   m_ObjectHideFlags: 0
@@ -2954,9 +2967,9 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6024070598901792703}
   m_Enabled: 1
-  m_SortingLayerID: -2144495727
-  m_SortingLayer: 3
-  m_SortingOrder: 6
+  m_SortingLayerID: 88844613
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!95 &6875519903800996954
 Animator:

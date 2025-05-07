@@ -81,5 +81,4 @@ public class GridSpawner : MonoBehaviour
         SortingGroup sortingGroup = spawnedCharacter.GetComponentInChildren<SortingGroup>();
         sortingGroup.sortingOrder = (int)(_gridSize.y - gridPosition.y);
     }
-    
 }

@@ -678,6 +678,7 @@ GameObject:
   - component: {fileID: 3377274926165294370}
   - component: {fileID: 5728868558780372982}
   - component: {fileID: 8414103797571942309}
+  - component: {fileID: -2471560736791559927}
   m_Layer: 6
   m_Name: ElfRuneBlade
   m_TagString: Player
@@ -754,6 +755,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 2
+--- !u!114 &-2471560736791559927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382782348239096657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 978d3c6c2bf13d54da2ce8bdcc523e57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1602770969465100272
 GameObject:
   m_ObjectHideFlags: 0
@@ -4049,9 +4062,9 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8927045434521243061}
   m_Enabled: 1
-  m_SortingLayerID: -1598081355
-  m_SortingLayer: 2
-  m_SortingOrder: 5
+  m_SortingLayerID: 88844613
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!95 &6140389952513276470
 Animator:

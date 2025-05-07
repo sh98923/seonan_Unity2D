@@ -3029,6 +3029,7 @@ GameObject:
   - component: {fileID: 6482852547355149850}
   - component: {fileID: -7603362660363239095}
   - component: {fileID: 8268918278545427787}
+  - component: {fileID: 3117025159077219275}
   m_Layer: 6
   m_Name: ElfAssassin
   m_TagString: Player
@@ -3105,6 +3106,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 2
+--- !u!114 &3117025159077219275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6871854670009154279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 978d3c6c2bf13d54da2ce8bdcc523e57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6892082526077935431
 GameObject:
   m_ObjectHideFlags: 0
@@ -3337,7 +3350,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 88844613
   m_SortingLayer: 1
-  m_SortingOrder: 4
+  m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!95 &5146658811473480151
 Animator:

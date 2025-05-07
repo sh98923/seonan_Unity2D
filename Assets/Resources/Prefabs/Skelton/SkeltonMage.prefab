@@ -1429,6 +1429,7 @@ GameObject:
   - component: {fileID: 5006143028437850817}
   - component: {fileID: 6241999781100668972}
   - component: {fileID: 9181208345024448580}
+  - component: {fileID: 6660869312039086239}
   m_Layer: 7
   m_Name: SkeltonMage
   m_TagString: Enemy
@@ -1505,6 +1506,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 2
+--- !u!114 &6660869312039086239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3869153255920872131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 978d3c6c2bf13d54da2ce8bdcc523e57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3897179262474473887
 GameObject:
   m_ObjectHideFlags: 0
@@ -3581,8 +3594,8 @@ SortingGroup:
   m_GameObject: {fileID: 7587365821332304633}
   m_Enabled: 1
   m_SortingLayerID: -290365821
-  m_SortingLayer: 4
-  m_SortingOrder: 5
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!95 &6453432209904427716
 Animator:

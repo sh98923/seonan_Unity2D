@@ -828,6 +828,7 @@ GameObject:
   - component: {fileID: 863013891949211286}
   - component: {fileID: 1326125239545973770}
   - component: {fileID: 2002643606537030637}
+  - component: {fileID: -1610455710829528051}
   m_Layer: 6
   m_Name: ElfMage
   m_TagString: Player
@@ -904,6 +905,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 2
+--- !u!114 &-1610455710829528051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880616072713439741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 978d3c6c2bf13d54da2ce8bdcc523e57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1937926724161160002
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,9 +960,9 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937926724161160002}
   m_Enabled: 1
-  m_SortingLayerID: -1598081355
-  m_SortingLayer: 2
-  m_SortingOrder: 5
+  m_SortingLayerID: 88844613
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!95 &7626607448925120996
 Animator:

@@ -42,14 +42,8 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: BacklineCharacter
+  - name: Character
     uniqueID: 88844613
-    locked: 0
-  - name: MiddleCharacter
-    uniqueID: 2696885941
-    locked: 0
-  - name: ForwardCharacter
-    uniqueID: 2150471569
     locked: 0
   - name: Enemy
     uniqueID: 4004601475

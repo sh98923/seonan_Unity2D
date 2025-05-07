@@ -145,7 +145,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 88844613
   m_SortingLayer: 1
-  m_SortingOrder: 4
+  m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!95 &4084242292123634064
 Animator:
@@ -2875,6 +2875,7 @@ GameObject:
   - component: {fileID: 8458713790667319792}
   - component: {fileID: 6644552439904179910}
   - component: {fileID: -7411675609654340209}
+  - component: {fileID: -842718439590920147}
   m_Layer: 6
   m_Name: ElfArcher
   m_TagString: Player
@@ -2951,6 +2952,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 2
+--- !u!114 &-842718439590920147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6311861856165175232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 978d3c6c2bf13d54da2ce8bdcc523e57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6349283776411875601
 GameObject:
   m_ObjectHideFlags: 0
