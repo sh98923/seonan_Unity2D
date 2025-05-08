@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
-    [SerializeField] private Transform spawnArea; // 적들이 배치될 기준 영역
-    [SerializeField] private GameObject[] enemyPrefabs; // 적 프리펩 배열
+    [SerializeField] private Transform spawnArea; 
+    [SerializeField] private GameObject[] enemyPrefabs; 
 
-    private float columnSpacing = 2.0f; // 열 간격
-    private float rowSpacing = 1.5f;   // 행 간격
-    private int columns = 3;          // 열 수
+    private float columnSpacing = 2.0f; 
+    private float rowSpacing = 1.5f;  
+    private int columns = 3;         
 
-    private List<Enemy> _alivedEnemies = new List<Enemy>(); // 살아있는 적들 리스트
+    private List<Enemy> _alivedEnemies = new List<Enemy>(); 
 
     public void SpawnEnemies(List<EnemyData> enemies)
     {
@@ -19,13 +19,12 @@ public class EnemySpawn : MonoBehaviour
         foreach (var enemyData in enemies)
         {
             GameObject prefab = GetEnemyPrefabByName(enemyData.Name);
-            // enemyData.Count 만큼 적 생성
+
             for (int i = 0; i < enemyData.Count; i++)
             {
                 Vector3 spawnPosition = CalculateSpawnPosition(i);
                 GameObject enemy = Instantiate(prefab, spawnPosition, Quaternion.identity, spawnArea);
 
-                // 적 데이터 초기화
                 Enemy enemyComponent = enemy.GetComponent<Enemy>();
                 enemyComponent.Initialize(enemyData);
 

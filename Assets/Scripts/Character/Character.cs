@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
@@ -5,6 +6,8 @@ using static UnityEngine.GraphicsBuffer;
 
 public abstract class Character : MonoBehaviour
 {
+    //public static Character Instance { get; private set; }
+
     protected enum State
     {
         Idle, Move, Attack, Dead
@@ -16,11 +19,15 @@ public abstract class Character : MonoBehaviour
     protected abstract int _targetLayerMask { get; }
     protected abstract float _characterRange {  get; }
 
+    [SerializeField] protected int _baseAttackIndex;
+    [SerializeField] protected Transform _baseAttackSpawnPos;
+
     [SerializeField]
     protected int _moveSpeed = 2;
     protected int _currentHp;
 
     protected bool _isDead = false;
+    protected bool _isAttacking = false;
 
     protected State _curState = State.Idle;
 
@@ -43,11 +50,6 @@ public abstract class Character : MonoBehaviour
         {
             GameStartManager.Instance.BattleStartEvent -= StartBattle;
         }
-    }
-
-    protected virtual void Start()
-    {   
-        
     }
 
     protected virtual void Update()
@@ -149,7 +151,18 @@ public abstract class Character : MonoBehaviour
     {
         if (_curState != State.Attack) return;
 
+        _isAttacking = true;
         _animator.SetTrigger("Attack");
+
+        GameObject effect = PoolingManager.Instance.GetEffect(_baseAttackIndex);
+
+        effect.transform.position = _baseAttackSpawnPos.position;
+
+        BaseAttack baseAttack = effect.GetComponent<BaseAttack>();
+        if(baseAttack != null)
+        {
+            baseAttack.Initialize(_target);
+        }
     }
 
     protected virtual void ManageAttackState()
@@ -175,15 +188,15 @@ public abstract class Character : MonoBehaviour
         }
     }
 
-    protected virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         if (_curState == State.Dead)
             return;
 
         _currentHp -= damage;
-        Debug.Log("Hp : {_currentHp}");
+        Debug.Log("Hp : " + _currentHp);
 
-        if( _currentHp <= 0 )
+        if ( _currentHp <= 0 )
         {
             Die();
         }

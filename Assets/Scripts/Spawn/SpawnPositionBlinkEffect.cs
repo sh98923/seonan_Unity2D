@@ -10,7 +10,7 @@ public class SpawnPositionBlinkEffect : MonoBehaviour
 
     private void Update()
     { 
-        if (_blinkTime < 0.5f)
+        if (_blinkTime < 0.7f)
         {
             //_targetImage = GetComponent<Image>();
             //_targetImage.color = new Color(1,1,1,1-_blinkTime);
