@@ -16,14 +16,26 @@ public class Player : Character
             _playerData = DataManager.Instance.GetPlayerData(i);
         }
 
-        _currentHp = _playerData.Hp;
         base.Awake();
+    }
+
+    protected override void Update()
+    {
+        if (GameStartManager.Instance.IsUIReturned())
+        {
+            _currentHp = _playerData.Hp;
+            _isDead = false;
+            SetIdle();
+            _animator.SetBool("isDead", false);
+        }
+
+        base.Update();
     }
 
     public void Initialize(PlayerData data)
     {
         _playerData = data;
-        _playerData.Hp = _currentHp;
+        _currentHp = _playerData.Hp;
 
         Debug.Log($"캐릭터 생성: ID={data.Name}, 체력={data.Hp}, 공격력={data.Atk}");
     }

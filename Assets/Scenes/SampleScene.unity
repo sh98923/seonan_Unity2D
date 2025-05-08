@@ -394,6 +394,7 @@ MonoBehaviour:
   _gridContainer: {fileID: 963729535}
   _buttonContainer: {fileID: 369319667}
   _enemySpawner: {fileID: 1426070558}
+  _gridSpawner: {fileID: 963729538}
   _currentStage: 1
   IsButtonClicked: 0
 --- !u!4 &387118516
@@ -495,7 +496,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 963729538}
         m_TargetAssemblyTypeName: GridSpawner, Assembly-CSharp
-        m_MethodName: SpawnCharacter
+        m_MethodName: SpawnPlayer
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -627,7 +628,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 963729538}
         m_TargetAssemblyTypeName: GridSpawner, Assembly-CSharp
-        m_MethodName: SpawnCharacter
+        m_MethodName: SpawnPlayer
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -996,7 +997,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 963729538}
         m_TargetAssemblyTypeName: GridSpawner, Assembly-CSharp
-        m_MethodName: SpawnCharacter
+        m_MethodName: SpawnPlayer
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1564,7 +1565,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 963729538}
         m_TargetAssemblyTypeName: GridSpawner, Assembly-CSharp
-        m_MethodName: SpawnCharacter
+        m_MethodName: SpawnPlayer
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1793,7 +1794,7 @@ MonoBehaviour:
   _gridCellPrefab: {fileID: 7071495425272724874, guid: e6b78c3099bfd364e92ffc9083fdc218, type: 3}
   _gridSize: {x: 3, y: 3}
   _cellSize: 2
-  _characterPrefabs:
+  _playerPrefabs:
   - {fileID: 9158167135536924216, guid: 6dbd6cf2a27dea6408e94b0d384feebd, type: 3}
   - {fileID: 205380808543776369, guid: e03c0b26bc7ff41e89f4709a00b89df7, type: 3}
   - {fileID: 992518889194338473, guid: 357956955f75841efadd490ebf2d2129, type: 3}
@@ -2506,7 +2507,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 963729538}
         m_TargetAssemblyTypeName: GridSpawner, Assembly-CSharp
-        m_MethodName: SpawnCharacter
+        m_MethodName: SpawnPlayer
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2695,7 +2696,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 963729538}
         m_TargetAssemblyTypeName: GridSpawner, Assembly-CSharp
-        m_MethodName: SpawnCharacter
+        m_MethodName: SpawnPlayer
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3313,7 +3314,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 963729538}
         m_TargetAssemblyTypeName: GridSpawner, Assembly-CSharp
-        m_MethodName: SpawnCharacter
+        m_MethodName: SpawnPlayer
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3545,7 +3546,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 963729538}
         m_TargetAssemblyTypeName: GridSpawner, Assembly-CSharp
-        m_MethodName: SpawnCharacter
+        m_MethodName: SpawnPlayer
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3907,7 +3908,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 963729538}
         m_TargetAssemblyTypeName: GridSpawner, Assembly-CSharp
-        m_MethodName: SpawnCharacter
+        m_MethodName: SpawnPlayer
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

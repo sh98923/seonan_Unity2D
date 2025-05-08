@@ -58,7 +58,6 @@ public abstract class Character : MonoBehaviour
         if (GameStartManager.Instance != null && GameStartManager.Instance.IsButtonClicked)
         {
             StartBattle();
-            GameStartManager.Instance.IsButtonClicked = false;
         }
 
         if (Input.GetKeyDown(KeyCode.J) && !_isDead)
@@ -79,6 +78,7 @@ public abstract class Character : MonoBehaviour
                 ManageAttackState();
                 break;
             case State.Dead:
+                _animator.SetBool("isDead", true);
                 break;
         }
     }
