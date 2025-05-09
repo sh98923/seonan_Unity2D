@@ -827,7 +827,6 @@ GameObject:
   m_Component:
   - component: {fileID: 863013891949211286}
   - component: {fileID: 1326125239545973770}
-  - component: {fileID: 2002643606537030637}
   - component: {fileID: -1610455710829528051}
   m_Layer: 6
   m_Name: ElfMage
@@ -893,21 +892,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.33}
   m_Radius: 0.4
---- !u!114 &2002643606537030637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1880616072713439741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 092d0734ce486c04e96f7e00e291427b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _baseAttackIndex: 1
-  _baseAttackSpawnPos: {fileID: 7373100848248830019}
-  _moveSpeed: 2
 --- !u!114 &-1610455710829528051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -931,6 +915,7 @@ GameObject:
   - component: {fileID: 1445118838663411791}
   - component: {fileID: 7036999313494571059}
   - component: {fileID: 7626607448925120996}
+  - component: {fileID: 8194433294921378476}
   m_Layer: 6
   m_Name: UnitRoot
   m_TagString: Untagged
@@ -989,6 +974,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8194433294921378476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937926724161160002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092d0734ce486c04e96f7e00e291427b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _baseAttackEffectKey: ElfMageBA
+  _baseAttackSpawnPos: {fileID: 7373100848248830019}
+  _moveSpeed: 2
 --- !u!1 &1963246594105551489
 GameObject:
   m_ObjectHideFlags: 0

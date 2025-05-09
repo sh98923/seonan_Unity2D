@@ -17,9 +17,10 @@ public abstract class Character : MonoBehaviour
     protected Transform _target;
 
     protected abstract int _targetLayerMask { get; }
+    protected abstract int _characterAtk { get; }
     protected abstract float _characterRange {  get; }
 
-    [SerializeField] protected int _baseAttackIndex;
+    [SerializeField] protected string _baseAttackEffectKey;
     [SerializeField] protected Transform _baseAttackSpawnPos;
 
     [SerializeField]
@@ -114,12 +115,18 @@ public abstract class Character : MonoBehaviour
 
         foreach(Collider2D collider in colliders)
         {
-            float distance = Vector2.Distance(transform.position, collider.transform.position);
+            Character targetCharacter = collider.GetComponentInChildren<Character>();
 
-            if(distance < minDistance)
+            //죽은 상태 예외 처리
+            if(targetCharacter != null && !targetCharacter._isDead)
             {
-                minDistance = distance;
-                _target = collider.transform;
+                float distance = Vector2.Distance(transform.position, collider.transform.position);
+
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    _target = collider.transform;
+                }
             }
         }
 
@@ -144,24 +151,32 @@ public abstract class Character : MonoBehaviour
             return;
         }
 
-        transform.Translate(direction.normalized * _moveSpeed * Time.deltaTime);
+        transform.Translate(-direction.normalized * _moveSpeed * Time.deltaTime);
     }
 
     protected virtual void StartAttack()
     {
-        if (_curState != State.Attack) return;
+        if (_curState != State.Attack || _isAttacking) return;
 
         _isAttacking = true;
         _animator.SetTrigger("Attack");
+    }
 
-        GameObject effect = PoolingManager.Instance.GetEffect(_baseAttackIndex);
+    public virtual void SpawnEffect()
+    {
+        GameObject effect = PoolingManager.Instance.Pop(_baseAttackEffectKey);
 
-        effect.transform.position = _baseAttackSpawnPos.position;
-
-        BaseAttack baseAttack = effect.GetComponent<BaseAttack>();
-        if(baseAttack != null)
+        if(effect != null)
         {
-            baseAttack.Initialize(_target);
+            effect.transform.position = _baseAttackSpawnPos.position;
+            effect.transform.rotation = Quaternion.identity;
+
+            BaseAttack baseAttack = effect.GetComponent<BaseAttack>();
+
+            if(baseAttack != null)
+            {
+                baseAttack.Initialize(_target, _characterAtk, 5f);
+            }
         }
     }
 
@@ -209,7 +224,13 @@ public abstract class Character : MonoBehaviour
         _isDead = true;
         _curState = State.Dead;
         _animator.SetTrigger("Death");
-        Debug.Log("chracter die");
+
+        OnDeath();
+    }
+
+    protected virtual void OnDeath()
+    {
+        PoolingManager.Instance.Release(gameObject.name, gameObject);
     }
 
     void OnDrawGizmos()

@@ -5,6 +5,7 @@ public class Player : Character
     private PlayerData _playerData;
 
     protected override int _targetLayerMask => LayerMask.GetMask("Enemy");
+    protected override int _characterAtk => _playerData.Atk;
     protected override float _characterRange => _playerData.Range;
 
     protected override void Awake()

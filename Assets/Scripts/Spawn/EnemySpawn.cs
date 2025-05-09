@@ -25,7 +25,7 @@ public class EnemySpawn : MonoBehaviour
                 Vector3 spawnPosition = CalculateSpawnPosition(i);
                 GameObject enemy = Instantiate(prefab, spawnPosition, Quaternion.identity, spawnArea);
 
-                Enemy enemyComponent = enemy.GetComponent<Enemy>();
+                Enemy enemyComponent = enemy.GetComponentInChildren<Enemy>();
                 enemyComponent.Initialize(enemyData);
 
                 enemyComponent.OnEnemyDefeated += CheckEnemyDefeat;

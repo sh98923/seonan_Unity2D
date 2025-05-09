@@ -74,7 +74,7 @@ public class GridSpawner : MonoBehaviour
         GameObject spawnedPlayer = Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
 
         // 캐릭터 초기화
-        Player playerScript = spawnedPlayer.GetComponent<Player>();
+        Player playerScript = spawnedPlayer.GetComponentInChildren<Player>();
         playerScript.Initialize(_playerData);
 
         // 위치 점유 처리

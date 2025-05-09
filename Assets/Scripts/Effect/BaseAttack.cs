@@ -9,18 +9,20 @@ public class BaseAttack : MonoBehaviour
 
     private Transform _target;
 
-    public void Initialize(Transform target)
+    public void Initialize(Transform target, int attackdamage, float attackspeed)
     {
         _target = target;
+        damage = attackdamage;
+        speed = attackspeed;
 
-        Destroy(gameObject, lifetime);
+        ReturnToPool();
     }
 
     private void Update()
     {
         if (_target == null)
         {
-            Destroy(gameObject);
+            ReturnToPool();
             return;
         }
 
@@ -35,7 +37,12 @@ public class BaseAttack : MonoBehaviour
             Character oppositeScript = _target.GetComponent<Character>();
             oppositeScript.TakeDamage(damage);
 
-            Destroy(gameObject);
+            ReturnToPool();
         }
+    }
+
+    private void ReturnToPool()
+    {
+        PoolingManager.Instance.Release(gameObject.name, gameObject);
     }
 }
