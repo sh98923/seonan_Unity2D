@@ -225,12 +225,6 @@ public abstract class Character : MonoBehaviour
         _curState = State.Dead;
         _animator.SetTrigger("Death");
 
-        OnDeath();
-    }
-
-    protected virtual void OnDeath()
-    {
-        PoolingManager.Instance.Release(gameObject.name, gameObject);
     }
 
     void OnDrawGizmos()

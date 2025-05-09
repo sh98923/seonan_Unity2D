@@ -19,8 +19,7 @@ public class PoolingManager
         }
     }
 
-    private Dictionary<string, ObjectPool<GameObject>> _objectsPools =
-        new Dictionary<string, ObjectPool<GameObject>>();
+    private Dictionary<string, ObjectPool<GameObject>> _objectsPools = new Dictionary<string, ObjectPool<GameObject>>();
 
     private GameObject _prefab;
 
@@ -57,17 +56,7 @@ public class PoolingManager
 
     public void Release(string key, GameObject poolObj)
     {
-        string sanitizedKey = key.Replace("(Clone)", "").Trim();
-
-        if (_objectsPools.ContainsKey(sanitizedKey))
-        {
-            _objectsPools[sanitizedKey].Release(poolObj);
-        }
-        else
-        {
-            Debug.LogError($"Key '{sanitizedKey}' not found in the pool.");
-            Object.Destroy(poolObj); // 풀에 없는 오브젝트는 파괴
-        }
+        _objectsPools[key].Release(poolObj);
     }
 
     private GameObject CreatePoolObj()
