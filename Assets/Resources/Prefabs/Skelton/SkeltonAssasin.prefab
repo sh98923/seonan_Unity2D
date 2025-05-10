@@ -2167,8 +2167,8 @@ GameObject:
   m_Component:
   - component: {fileID: 334778163513290788}
   - component: {fileID: 7233421306418034234}
-  - component: {fileID: 502554349967292601}
   - component: {fileID: 5646525049880903400}
+  - component: {fileID: 2491259017677523887}
   m_Layer: 7
   m_Name: SkeltonAssasin
   m_TagString: Enemy
@@ -2233,7 +2233,19 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.33}
   m_Radius: 0.4
---- !u!114 &502554349967292601
+--- !u!114 &5646525049880903400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4847838609770726236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 978d3c6c2bf13d54da2ce8bdcc523e57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2491259017677523887
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2247,19 +2259,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseAttackEffectKey: SkelAssasinBA
   _baseAttackSpawnPos: {fileID: 2279069197097942707}
+  _effectManager: {fileID: 0}
   _moveSpeed: 2
---- !u!114 &5646525049880903400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4847838609770726236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 978d3c6c2bf13d54da2ce8bdcc523e57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4983291757369025525
 GameObject:
   m_ObjectHideFlags: 0

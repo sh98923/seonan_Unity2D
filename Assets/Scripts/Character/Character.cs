@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
-using static UnityEngine.GraphicsBuffer;
+
 
 public abstract class Character : MonoBehaviour
 {
@@ -21,11 +21,13 @@ public abstract class Character : MonoBehaviour
     protected abstract float _characterRange {  get; }
 
     [SerializeField] protected string _baseAttackEffectKey;
-    [SerializeField] protected Transform _baseAttackSpawnPos;
+    protected Transform[] _characterParts;
+    protected Transform _baseAttackSpawnPos;
 
     [SerializeField]
     protected int _moveSpeed = 2;
     protected int _currentHp;
+    private Vector2 _targetPos;
 
     protected bool _isDead = false;
     protected bool _isAttacking = false;
@@ -36,6 +38,13 @@ public abstract class Character : MonoBehaviour
     {
         _animator = GetComponentInChildren<Animator>();
     }
+
+    protected virtual void Start()
+    {
+        _characterParts = GetComponentsInChildren<Transform>();
+        _baseAttackSpawnPos = _characterParts[_characterParts.Length - 1];
+    }
+
 
     protected virtual void OnEnable()
     {
@@ -140,7 +149,8 @@ public abstract class Character : MonoBehaviour
         if (_target == null)
             return;
 
-        Vector3 direction = _target.position - transform.position;
+        Vector2 direction = _target.position - transform.position;
+        _targetPos = direction.normalized;
         float distance = direction.magnitude;
 
         if(distance < _characterRange)
@@ -156,28 +166,24 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void StartAttack()
     {
-        if (_curState != State.Attack || _isAttacking) return;
+        if (_curState != State.Attack) return;
 
         _isAttacking = true;
         _animator.SetTrigger("Attack");
+        UseBaseAttack();
     }
 
-    public virtual void SpawnEffect()
+    protected virtual void UseBaseAttack()
     {
-        GameObject effect = PoolingManager.Instance.Pop(_baseAttackEffectKey);
+        Debug.Log(_baseAttackEffectKey);
+        // _baseAttackSpawnPos.position을 사용하여 이펙트 위치 지정
+        GameObject effectPrefab = PoolingManager.Instance.Pop(_baseAttackEffectKey);
 
-        if(effect != null)
-        {
-            effect.transform.position = _baseAttackSpawnPos.position;
-            effect.transform.rotation = Quaternion.identity;
+        Vector2 pos = _baseAttackSpawnPos.position;
+        effectPrefab.transform.position = pos;
 
-            BaseAttack baseAttack = effect.GetComponent<BaseAttack>();
-
-            if(baseAttack != null)
-            {
-                baseAttack.Initialize(_target, _characterAtk, 5f);
-            }
-        }
+        effectPrefab.GetComponent<BaseAttack>().SetDirection(_targetPos);
+        effectPrefab.SetActive(true);
     }
 
     protected virtual void ManageAttackState()

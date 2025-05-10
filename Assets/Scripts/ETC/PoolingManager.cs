@@ -1,81 +1,45 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Pool;
 
-public class PoolingManager
+public class PoolingManager : SingletonScript<PoolingManager>
 {
-    private static PoolingManager _instance;
+    private Dictionary<string, List<GameObject>> _totalObject = new Dictionary<string, List<GameObject>>();
 
-    public static PoolingManager Instance
+    public List<GameObject> GetObjects(string key) { return _totalObject[key]; }
+
+    public void Add(string key, int poolSize, GameObject prefab, Transform parent = null)
     {
-        get
+        List<GameObject> objects = new List<GameObject>(poolSize);
+
+        if (parent == null)
         {
-            if (_instance == null)
-            {
-                _instance = new PoolingManager();
-            }
-
-            return _instance;
+            GameObject parentObject = new GameObject(key);
+            parent = parentObject.transform;
         }
-    }
-
-    private Dictionary<string, ObjectPool<GameObject>> _objectsPools = new Dictionary<string, ObjectPool<GameObject>>();
-
-    private GameObject _prefab;
-
-    public void CreatePool(string key, GameObject prefab, int poolSize)
-    {
-        _prefab = prefab;
-
-        ObjectPool<GameObject> pool = new ObjectPool<GameObject>
-            (
-            CreatePoolObj,
-            OnGetPoolObj,
-            OnReleasePoolObj,
-            OnDestroyPoolObj,
-            true,
-            poolSize
-            );
-
-        GameObject parent = new GameObject(key);
 
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject obj = pool.Get();
-            obj.transform.parent = parent.transform;
-            pool.Release(obj);
+            GameObject obj = Instantiate(prefab, parent);
+            obj.name = prefab.name;
+            obj.SetActive(false);
+            objects.Add(obj);
         }
 
-        _objectsPools.Add(key, pool);
+        _totalObject.Add(key, objects);
     }
 
     public GameObject Pop(string key)
     {
-        return _objectsPools[key].Get();
-    }
+        foreach (GameObject obj in _totalObject[key])
+        {
+            if (!obj.activeSelf)
+            {
+                obj.SetActive(true);
+                return obj;
+            }
+        }
 
-    public void Release(string key, GameObject poolObj)
-    {
-        _objectsPools[key].Release(poolObj);
-    }
-
-    private GameObject CreatePoolObj()
-    {
-        return Object.Instantiate(_prefab);
-    }
-
-    private void OnGetPoolObj(GameObject poolObj)
-    {
-        poolObj.SetActive(true);
-    }
-
-    private void OnReleasePoolObj(GameObject poolObj)
-    {
-        poolObj.SetActive(false);
-    }
-
-    private void OnDestroyPoolObj(GameObject poolObj)
-    {
-        Object.Destroy(poolObj);
+        return null;
     }
 }

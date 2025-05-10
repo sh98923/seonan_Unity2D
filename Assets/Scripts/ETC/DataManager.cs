@@ -25,7 +25,7 @@ public struct EnemyData
     public int Count;
 }
 
-public class DataManager : Singleton<DataManager>
+public class DataManager : SingletonData<DataManager>
 {
     private Dictionary<int, PlayerData> playerDatas = new Dictionary<int, PlayerData>();
     private Dictionary<int, EnemyData> enemyDatas = new Dictionary<int, EnemyData>();

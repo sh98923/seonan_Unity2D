@@ -1464,6 +1464,7 @@ GameObject:
   - component: {fileID: 5006143028437850817}
   - component: {fileID: 6241999781100668972}
   - component: {fileID: 6660869312039086239}
+  - component: {fileID: 7827886785045732975}
   m_Layer: 7
   m_Name: SkeltonMage
   m_TagString: Enemy
@@ -1540,6 +1541,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 978d3c6c2bf13d54da2ce8bdcc523e57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7827886785045732975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3869153255920872131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c463dd07af0d6640b97ef897b1d05b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _baseAttackEffectKey: SkelMageBA
+  _baseAttackSpawnPos: {fileID: 3675673786972911150}
+  _effectManager: {fileID: 0}
+  _moveSpeed: 2
 --- !u!1 &3897179262474473887
 GameObject:
   m_ObjectHideFlags: 0
@@ -3583,7 +3600,6 @@ GameObject:
   - component: {fileID: 1594313434803683920}
   - component: {fileID: 147565686663990519}
   - component: {fileID: 6453432209904427716}
-  - component: {fileID: 1384997537113198049}
   m_Layer: 7
   m_Name: UnitRoot
   m_TagString: Untagged
@@ -3642,21 +3658,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1384997537113198049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7587365821332304633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c463dd07af0d6640b97ef897b1d05b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _baseAttackEffectKey: SkelMageBA
-  _baseAttackSpawnPos: {fileID: 3675673786972911150}
-  _moveSpeed: 2
 --- !u!1 &7588954618505276807
 GameObject:
   m_ObjectHideFlags: 0

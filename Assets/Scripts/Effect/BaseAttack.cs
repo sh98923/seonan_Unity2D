@@ -8,6 +8,8 @@ public class BaseAttack : MonoBehaviour
     public float lifetime = 5f;
 
     private Transform _target;
+    private Vector2 _dir;
+    private float _timer;
 
     public void Initialize(Transform target, int attackdamage, float attackspeed)
     {
@@ -15,19 +17,18 @@ public class BaseAttack : MonoBehaviour
         damage = attackdamage;
         speed = attackspeed;
 
-        ReturnToPool();
+        _timer = lifetime;
     }
 
     private void Update()
     {
         if (_target == null)
         {
-            ReturnToPool();
+            //PoolingManager.Instance.Release(gameObject.name, gameObject);
             return;
         }
-
-        Vector3 direction = (_target.position - transform.position).normalized;
-        transform.Translate(direction * speed * Time.deltaTime);
+        
+        transform.Translate(_dir * speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,12 +38,12 @@ public class BaseAttack : MonoBehaviour
             Character oppositeScript = _target.GetComponent<Character>();
             oppositeScript.TakeDamage(damage);
 
-            ReturnToPool();
+            //PoolingManager.Instance.Release(gameObject.name, gameObject);
         }
     }
 
-    private void ReturnToPool()
+    public void SetDirection(Vector2 dir)
     {
-        PoolingManager.Instance.Release(gameObject.name, gameObject);
+        _dir = dir;
     }
 }

@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 5146334187547899643}
   - component: {fileID: 8440144301639404062}
   - component: {fileID: 6101232494950219936}
-  - component: {fileID: 5238949638392541849}
   m_Layer: 7
   m_Name: UnitRoot
   m_TagString: Enemy
@@ -102,21 +101,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5238949638392541849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 361702612544080655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c463dd07af0d6640b97ef897b1d05b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _baseAttackEffectKey: SkelDestroyerBA
-  _baseAttackSpawnPos: {fileID: 3871285954474632048}
-  _moveSpeed: 2
 --- !u!1 &690305482468708875
 GameObject:
   m_ObjectHideFlags: 0
@@ -3276,6 +3260,7 @@ GameObject:
   - component: {fileID: 1232048629240905580}
   - component: {fileID: 7836771080047996377}
   - component: {fileID: 722650165281901873}
+  - component: {fileID: 5305472061001660598}
   m_Layer: 7
   m_Name: SkeltonDestroyer
   m_TagString: Enemy
@@ -3352,6 +3337,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 978d3c6c2bf13d54da2ce8bdcc523e57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5305472061001660598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7233308530154401741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c463dd07af0d6640b97ef897b1d05b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _baseAttackEffectKey: SkelDestroyerBA
+  _baseAttackSpawnPos: {fileID: 3871285954474632048}
+  _effectManager: {fileID: 0}
+  _moveSpeed: 2
 --- !u!1 &7319712617231948472
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7817480442986529943}
   - component: {fileID: 6972831074753910394}
   m_Layer: 0
-  m_Name: SkelDestoryerBA
+  m_Name: SkelDestroyerBA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

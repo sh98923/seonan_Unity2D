@@ -774,6 +774,7 @@ GameObject:
   - component: {fileID: 5620087414748496909}
   - component: {fileID: 7817370504486827324}
   - component: {fileID: 2289649285821774883}
+  - component: {fileID: 981835440461969523}
   m_Layer: 7
   m_Name: SkeltonShaman
   m_TagString: Enemy
@@ -850,6 +851,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 978d3c6c2bf13d54da2ce8bdcc523e57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &981835440461969523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026461799492179603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c463dd07af0d6640b97ef897b1d05b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _baseAttackEffectKey: SkelShamanBA
+  _baseAttackSpawnPos: {fileID: 6480636745321625269}
+  _effectManager: {fileID: 0}
+  _moveSpeed: 2
 --- !u!1 &2107399227456154203
 GameObject:
   m_ObjectHideFlags: 0
@@ -3144,7 +3161,6 @@ GameObject:
   - component: {fileID: 5922786328563338747}
   - component: {fileID: 4456812989396493189}
   - component: {fileID: 3028956726692214199}
-  - component: {fileID: 662544485216874652}
   m_Layer: 7
   m_Name: UnitRoot
   m_TagString: Untagged
@@ -3203,21 +3219,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &662544485216874652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7167620777558813521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c463dd07af0d6640b97ef897b1d05b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _baseAttackEffectKey: SkelShamanBA
-  _baseAttackSpawnPos: {fileID: 6480636745321625269}
-  _moveSpeed: 2
 --- !u!1 &7330731379121059485
 GameObject:
   m_ObjectHideFlags: 0

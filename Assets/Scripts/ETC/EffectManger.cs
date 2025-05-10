@@ -1,24 +1,23 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class EffectManager : MonoBehaviour
 {
-    [SerializeField] private int _defaultPoolSize = 10;
-
     private void Awake()
     {
-        //리소스 폴더에서 프리펩 로드하고
-        GameObject[] elfEffects = Resources.LoadAll<GameObject>("Prefabs/Effect/ElfEffect");
-        GameObject[] skeletonEffects = Resources.LoadAll<GameObject>("Prefabs/Effect/SkeltonEffect");
+        // 경로로부터 이펙트 프리팹을 로드하고 풀에 추가
+        LoadEffectsFromResources();
+    }
 
-        // 모든 프리팹 통합 처리
-        foreach (GameObject effect in elfEffects)
-        {
-            PoolingManager.Instance.CreatePool(effect.name, effect, _defaultPoolSize); 
-        }
+    // Resources 폴더에서 이펙트 프리팹들을 로드
+    private void LoadEffectsFromResources()
+    {
+        // 'Effects' 폴더 아래 모든 이펙트 프리팹을 가져옴
+        GameObject[] effectPrefabs = Resources.LoadAll<GameObject>("Prefabs/Effect");
 
-        foreach (GameObject effect in skeletonEffects)
+        foreach (GameObject prefab in effectPrefabs)
         {
-            PoolingManager.Instance.CreatePool(effect.name, effect, _defaultPoolSize);
+            PoolingManager.Instance.Add(prefab.name, 5, prefab); // 풀 사이즈 10으로 설정
         }
     }
 }
