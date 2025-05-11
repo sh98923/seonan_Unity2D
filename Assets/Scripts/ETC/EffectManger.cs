@@ -17,7 +17,7 @@ public class EffectManager : MonoBehaviour
 
         foreach (GameObject prefab in effectPrefabs)
         {
-            PoolingManager.Instance.Add(prefab.name, 5, prefab); // 풀 사이즈 10으로 설정
+            PoolingManager.Instance.Add(prefab.name, 5, prefab);
         }
     }
 }

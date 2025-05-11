@@ -6,8 +6,6 @@ using UnityEngine.TextCore.Text;
 
 public abstract class Character : MonoBehaviour
 {
-    //public static Character Instance { get; private set; }
-
     protected enum State
     {
         Idle, Move, Attack, Dead
@@ -24,10 +22,12 @@ public abstract class Character : MonoBehaviour
     protected Transform[] _characterParts;
     protected Transform _baseAttackSpawnPos;
 
-    [SerializeField]
-    protected int _moveSpeed = 2;
+    [SerializeField] protected int _moveSpeed = 2;
+    [SerializeField] protected float atkDelay = 1f;
     protected int _currentHp;
+    protected float _lastAtkTime = 0;
     private Vector2 _targetPos;
+    
 
     protected bool _isDead = false;
     protected bool _isAttacking = false;
@@ -138,7 +138,7 @@ public abstract class Character : MonoBehaviour
                 }
             }
         }
-
+        
         return _target != null;
     }
 
@@ -170,12 +170,16 @@ public abstract class Character : MonoBehaviour
 
         _isAttacking = true;
         _animator.SetTrigger("Attack");
-        UseBaseAttack();
+
+        if(Time.deltaTime - _lastAtkTime >= atkDelay)
+        {
+            UseBaseAttack();
+            _lastAtkTime = Time.deltaTime;
+        }
     }
 
-    protected virtual void UseBaseAttack()
+    public virtual void UseBaseAttack()
     {
-        Debug.Log(_baseAttackEffectKey);
         // _baseAttackSpawnPos.position을 사용하여 이펙트 위치 지정
         GameObject effectPrefab = PoolingManager.Instance.Pop(_baseAttackEffectKey);
 
@@ -184,6 +188,8 @@ public abstract class Character : MonoBehaviour
 
         effectPrefab.GetComponent<BaseAttack>().SetDirection(_targetPos);
         effectPrefab.SetActive(true);
+
+        effectPrefab.GetComponent<BaseAttack>().SetTargetLayer(_targetLayerMask);
     }
 
     protected virtual void ManageAttackState()
@@ -230,7 +236,7 @@ public abstract class Character : MonoBehaviour
         _isDead = true;
         _curState = State.Dead;
         _animator.SetTrigger("Death");
-
+        transform.root.gameObject.SetActive(false);
     }
 
     void OnDrawGizmos()

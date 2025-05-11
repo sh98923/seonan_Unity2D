@@ -424,7 +424,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3548666256879168762}
   - component: {fileID: 1936587409509214953}
-  - component: {fileID: 3510675568294193821}
   - component: {fileID: 5558984455075970048}
   m_Layer: 6
   m_Name: ElfKnight
@@ -446,6 +445,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1353997668411141382}
+  - {fileID: 7104768706324835274}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -483,25 +483,12 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.33}
   m_Radius: 0.4
---- !u!114 &3510675568294193821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 992518889194338473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 092d0734ce486c04e96f7e00e291427b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _moveSpeed: 2
 --- !u!114 &5558984455075970048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -664,6 +651,37 @@ Transform:
   m_Children:
   - {fileID: 4940363923127689605}
   m_Father: {fileID: 2896261638163005463}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1635073388005226234
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7104768706324835274}
+  m_Layer: 0
+  m_Name: AtkPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7104768706324835274
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635073388005226234}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.433, y: 0.309, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3548666256879168762}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1636441727725231633
 GameObject:
@@ -2935,6 +2953,7 @@ GameObject:
   - component: {fileID: 1353997668411141382}
   - component: {fileID: 4160233532503693652}
   - component: {fileID: 6875519903800996954}
+  - component: {fileID: 6614445295300619415}
   m_Layer: 6
   m_Name: UnitRoot
   m_TagString: Untagged
@@ -2993,6 +3012,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6614445295300619415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6024070598901792703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092d0734ce486c04e96f7e00e291427b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _baseAttackEffectKey: 
+  _moveSpeed: 2
 --- !u!1 &6108359363919180942
 GameObject:
   m_ObjectHideFlags: 0

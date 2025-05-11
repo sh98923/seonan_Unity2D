@@ -175,12 +175,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 396441848487706810}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.365, y: 0.294, z: 0}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: -0.536, y: 0.288, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 863013891949211286}
+  m_Father: {fileID: 1445118838663411791}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &878692879515316955
 GameObject:
@@ -857,9 +857,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 863013891949211286}
-  - component: {fileID: 1326125239545973770}
-  - component: {fileID: -1610455710829528051}
-  - component: {fileID: 8572832344329788492}
+  - component: {fileID: 5320443393320546707}
   m_Layer: 6
   m_Name: ElfMage
   m_TagString: Player
@@ -880,7 +878,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1445118838663411791}
-  - {fileID: 247333563210422555}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -888,43 +885,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!58 &1326125239545973770
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1880616072713439741}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.33}
-  m_Radius: 0.4
---- !u!114 &-1610455710829528051
+--- !u!114 &5320443393320546707
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -936,21 +897,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 978d3c6c2bf13d54da2ce8bdcc523e57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8572832344329788492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1880616072713439741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 092d0734ce486c04e96f7e00e291427b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _baseAttackEffectKey: ElfMageBA
-  _baseAttackSpawnPos: {fileID: 0}
-  _moveSpeed: 2
 --- !u!1 &1937926724161160002
 GameObject:
   m_ObjectHideFlags: 0
@@ -962,9 +908,11 @@ GameObject:
   - component: {fileID: 1445118838663411791}
   - component: {fileID: 7036999313494571059}
   - component: {fileID: 7626607448925120996}
+  - component: {fileID: 9196885215262942148}
+  - component: {fileID: 7729793908672485365}
   m_Layer: 6
   m_Name: UnitRoot
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -984,6 +932,7 @@ Transform:
   m_Children:
   - {fileID: 5973799904536455277}
   - {fileID: 5044528513982513257}
+  - {fileID: 247333563210422555}
   m_Father: {fileID: 863013891949211286}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!210 &7036999313494571059
@@ -1020,6 +969,57 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!58 &9196885215262942148
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937926724161160002}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0.33}
+  m_Radius: 0.4
+--- !u!114 &7729793908672485365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937926724161160002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092d0734ce486c04e96f7e00e291427b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _baseAttackEffectKey: ElfMageBA
+  _moveSpeed: 2
+  atkDelay: 1
 --- !u!1 &1963246594105551489
 GameObject:
   m_ObjectHideFlags: 0

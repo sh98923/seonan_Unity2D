@@ -81,10 +81,8 @@ public class GridSpawner : MonoBehaviour
         _filledPosition.Add(gridPosition);
         _spawnedPlayers[playerId] = spawnedPlayer;
 
-        // SpriteRenderer¿« sortingOrder º≥¡§
-        //SortingGroup sortingGroup = spawnedPlayer.GetComponentInChildren<SortingGroup>();
-        //sortingGroup.sortingOrder = (int)(_gridSize.y - gridPosition.y);
     }
+
     public void ResetPlayerToInitPos()
     {
         _filledPosition.Clear();

@@ -11,35 +11,51 @@ public class BaseAttack : MonoBehaviour
     private Vector2 _dir;
     private float _timer;
 
-    public void Initialize(Transform target, int attackdamage, float attackspeed)
-    {
-        _target = target;
-        damage = attackdamage;
-        speed = attackspeed;
+    private CircleCollider2D _circleCollider;
+    private LayerMask _layerTargetMask;
 
-        _timer = lifetime;
+    private void Awake()
+    {
+        _circleCollider = GetComponent<CircleCollider2D>();
     }
 
     private void Update()
     {
-        if (_target == null)
-        {
-            //PoolingManager.Instance.Release(gameObject.name, gameObject);
-            return;
-        }
+        //if (_target == null)
+        //{
+        //    //PoolingManager.Instance.Release(gameObject.name, gameObject);
+        //    return;
+        //}
         
         transform.Translate(_dir * speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform == _target)
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            Character oppositeScript = _target.GetComponent<Character>();
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _circleCollider.radius, _layerTargetMask);
+
+            Character oppositeScript = colliders[0].gameObject.GetComponentInChildren<Character>();
             oppositeScript.TakeDamage(damage);
 
-            //PoolingManager.Instance.Release(gameObject.name, gameObject);
+            this.gameObject.SetActive(false);
         }
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _circleCollider.radius, _layerTargetMask);
+
+            Character oppositeScript = colliders[0].gameObject.GetComponentInChildren<Character>();
+            oppositeScript.TakeDamage(damage);
+
+            this.gameObject.SetActive(false);
+        }
+    }
+    
+    public void SetTargetLayer(LayerMask layerTargetMask)
+    {
+        _layerTargetMask = layerTargetMask;
     }
 
     public void SetDirection(Vector2 dir)

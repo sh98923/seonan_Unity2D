@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 370499169113017269}
   - component: {fileID: 719025056442813716}
   - component: {fileID: 8923716952321413400}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ElfMageBA
-  m_TagString: Untagged
+  m_TagString: PlayerAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

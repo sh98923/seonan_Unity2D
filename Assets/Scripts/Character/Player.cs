@@ -40,4 +40,11 @@ public class Player : Character
 
         Debug.Log($"캐릭터 생성: ID={data.Name}, 체력={data.Hp}, 공격력={data.Atk}");
     }
+
+    protected override bool SetTarget()
+    {
+        base.SetTarget();
+        Debug.Log(_target);
+        return _target != null;
+    }
 }
